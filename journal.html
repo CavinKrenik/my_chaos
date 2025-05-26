@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chaos Journal • Color Your Chaos</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .color-form, .color-map {
+      margin-top: 3rem;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2rem;
+      border-radius: 8px;
+    }
+
+    .color-form h2, .color-map h2 {
+      color: var(--clr-accent);
+      margin-bottom: 1rem;
+    }
+
+    .color-form input[type="text"],
+    .color-form select,
+    .color-form textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin: 0.5rem 0 1rem;
+      background: #1e1e1e;
+      color: white;
+      border: 1px solid #333;
+      border-radius: 4px;
+    }
+
+    .color-form input[type="color"] {
+      height: 3rem;
+      width: 100%;
+      border: none;
+      cursor: pointer;
+      margin-bottom: 1rem;
+    }
+
+    .color-form button {
+      background: var(--clr-accent);
+      color: black;
+      font-weight: bold;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: transform 0.2s ease;
+    }
+
+    .color-form button:hover {
+      transform: scale(1.05);
+    }
+
+    .color-grid {
+      display: grid;
+      gap: 6px;
+      grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+      margin-top: 1rem;
+    }
+
+    .color-square {
+      width: 100%;
+      padding-top: 100%;
+      position: relative;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .color-square:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.9);
+      color: #fff;
+      padding: 0.5rem;
+      font-size: 0.75rem;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      white-space: pre-wrap;
+      border-radius: 4px;
+      z-index: 10;
+    }
+
+    .clear-btn {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      background: none;
+      color: var(--clr-accent);
+      border: 1px solid var(--clr-accent);
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body id="top">
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="logo">Color Your Chaos</a>
+      <button class="nav-toggle" aria-label="Open navigation">☰</button>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="formsofchaos.html">Forms</a></li>
+          <li><a href="dailylife.html">Daily Life</a></li>
+          <li><a href="color.html">Colors</a></li>
+          <li><a href="journal.html">Journal</a></li>
+          <li><a href="mailto:cavinkrenik5@icloud.com">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-banner">
+    <h1>Chaos Journal</h1>
+  </section>
+
+  <main class="container">
+    <div class="text-block">
+      <p>Welcome to your personal Color Map Journal. Log your chaos moments, assign colors, and track your emotional landscape as it evolves. Each color block below tells a story—of struggle, growth, clarity, and resilience.</p>
+    </div>
+
+    <!-- Chaos Entry Form -->
+    <div class="color-form">
+      <h2>Log a Chaos Entry</h2>
+      <form id="colorMapForm">
+        <label for="chaosType">Chaos Type</label>
+        <select id="chaosType" required>
+          <option value="">Select...</option>
+          <option value="Physical">Physical</option>
+          <option value="Mental">Mental</option>
+          <option value="Emotional">Emotional</option>
+          <option value="Informational">Informational</option>
+        </select>
+
+        <label for="emotion">Emotion or Feeling</label>
+        <input type="text" id="emotion" placeholder="e.g. Overwhelmed, Calm, Hopeful" required />
+
+        <label for="color">Color</label>
+        <input type="color" id="color" value="#ffffff" />
+
+        <label for="note">Optional Note</label>
+        <textarea id="note" rows="3" placeholder="Any thoughts, reflections, or context…"></textarea>
+
+        <button type="submit">Add to Map</button>
+      </form>
+    </div>
+
+    <!-- Color Grid Display -->
+    <div class="color-map">
+      <h2>Your Color Map</h2>
+      <div id="colorGrid" class="color-grid"></div>
+      <button class="clear-btn" id="clearBtn">🗑️ Clear Map</button>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h4>About</h4>
+        <p>Color Your Chaos helps you navigate life’s messes with clear, creative approaches.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="formsofchaos.html">Forms of Chaos</a></li>
+          <li><a href="dailylife.html">Daily Life</a></li>
+          <li><a href="color.html">Color Guide</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="https://trello.com" target="_blank">Trello</a></li>
+          <li><a href="https://calm.com" target="_blank">Calm</a></li>
+          <li><a href="https://zenhabits.net" target="_blank">Zen Habits</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <p>Email: <a href="mailto:cavinkrenik5@icloud.com">cavinkrenik5@icloud.com</a></p>
+        <p><a href="https://x.com/ColorChaos" target="_blank">Follow on X</a></p>
+      </div>
+    </div>
+    <div class="back-to-top"><a href="#top" aria-label="Back to top">↑</a></div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.getElementById('colorMapForm');
+      const grid = document.getElementById('colorGrid');
+      const clearBtn = document.getElementById('clearBtn');
+
+      function getColorMap() {
+        return JSON.parse(localStorage.getItem('colorMap') || '[]');
+      }
+
+      function saveColorMap(entries) {
+        localStorage.setItem('colorMap', JSON.stringify(entries));
+      }
+
+      function renderColorMap() {
+        const entries = getColorMap();
+        grid.innerHTML = '';
+        entries.forEach(entry => {
+          const square = document.createElement('div');
+          square.className = 'color-square';
+          square.style.backgroundColor = entry.color;
+          square.setAttribute('data-tooltip', `${entry.chaos} | ${entry.emotion}\n📝 ${entry.note || ''}`);
+          grid.appendChild(square);
+        });
+      }
+
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        const chaos = document.getElementById('chaosType').value;
+        const emotion = document.getElementById('emotion').value.trim();
+        const color = document.getElementById('color').value;
+        const note = document.getElementById('note').value.trim();
+
+        const newEntry = { chaos, emotion, color, note };
+        const updatedMap = [...getColorMap(), newEntry];
+        saveColorMap(updatedMap);
+        renderColorMap();
+        form.reset();
+        document.getElementById('color').value = "#ffffff";
+      });
+
+      clearBtn.addEventListener('click', function () {
+        if (confirm("Are you sure you want to clear your color map?")) {
+          localStorage.removeItem('colorMap');
+          renderColorMap();
+        }
+      });
+
+      renderColorMap();
+    });
+
+    document.querySelector('.nav-toggle').addEventListener('click', () => {
+      document.querySelector('.site-nav').classList.toggle('open');
+    });
+  </script>
+</body>
+</html>
